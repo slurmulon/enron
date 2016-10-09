@@ -2,6 +2,7 @@
 
 (defprotocol Human
   "Represents a human agent that participates in a simulated society"
+
   (will-corrupt? [this] "Determines if an agent will perform corruption")
   (will-others-likely-agree? [this] "Numerical value that determines if an agent is likely to perform corruption")
   (will-likely-get-caught? [this] "Numerical value that determines if an agent is likely to get caught performing corruption")
@@ -31,9 +32,9 @@
 
   (greed-index [this payoff] (* (- (1 honest-index)) payoff)) ; a* = (1 - i)a
   (honest-index [this payoff] 0) ; i - TODO: choose randomly
-  (decision-index [this payoff-honest jail-term] (+ (* will-others-likely-agree? honest-index (- (1 will-likely-get-caught?)))
-                                                    (* payoff-honest (- 1 will-others-likely-agree?))
-                                                    (* will-likely-get-caught? (- payoff-honest (* payoff-honest jail-term)))))
+  (decision-index [this payoff-honest jail-term] (+ (* (will-others-likely-agree?) honest-index (- 1 (will-likely-get-caught?)))
+                                                    (* (payoff-honest) (- 1 (will-others-likely-agree?)))
+                                                    (* (will-likely-get-caught?) (- payoff-honest (* payoff-honest jail-term)))))
 
   (is-greedy? [this, payoff-honest] (> (will-corrupt?) payoff-honest)) ; E(x) > B (B = payoff)
   (is-corrupt? [this] false)
