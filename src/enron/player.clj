@@ -31,7 +31,7 @@
   (will-likely-get-caught? [this] (/ (count jailed-friends) (count corrupt-friends)))
 
   (greed-index [this payoff] (* (- (1 honest-index)) payoff)) ; a* = (1 - i)a
-  (honest-index [this payoff] 0) ; i - TODO: choose randomly
+  (honest-index [this payoff] (rand)) ; i
   (decision-index [this payoff-honest jail-term] (+ (* (will-others-likely-agree?) honest-index (- 1 (will-likely-get-caught?)))
                                                     (* (payoff-honest) (- 1 (will-others-likely-agree?)))
                                                     (* (will-likely-get-caught?) (- payoff-honest (* payoff-honest jail-term)))))
