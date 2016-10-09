@@ -1,6 +1,6 @@
 # enron
 
-> :trollface: Analyzing the dynamics of corruption with Clojure
+> :trollface: Modeling and analyzing the dynamics of corruption with Clojure
 
 ---
 
