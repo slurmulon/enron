@@ -1,6 +1,11 @@
 (ns enron.trust)
 
-(deftype Trust [uuid, from-players, to-players])
+(defprotocol Trustable
+  (is-pristine? [this] "Determines if the trust has been enacted upon in any way")
+  (is-abused? [this] "Determines if the trust has been abused due to corruption"))
 
-(defmethod is-pristine? Trust [trust] true)
-(defmethod is-abused? Trust [trust] false)
+(defrecord Trust [uuid, from-players, to-players]
+  Trustable
+  (is-pristine? [this] true)
+  (is-abused? [this] true))
+
