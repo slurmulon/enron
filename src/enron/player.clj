@@ -11,7 +11,8 @@
   (jailed-friends [this] "Provides a collection of related players that are currently imprisoned")
   (free-friends [this] "Provides a collection related players that are currently free")
   (is-above [this] "Determines if the player is at a higher rank than another player (i.e. can entrust acts to other player)")
-  (is-below [this] "Determines if the player is at a lower rank than another player (i.e. can be entrusted to perform acts"))
+  (is-below [this] "Determines if the player is at a lower rank than another player (i.e. can be entrusted to perform acts")
+  (memory-length [this] "Number of rounds a person will remember the actions of a friend/colleague"))
 
 ; TODO: type hints
 (defrecord Player [uuid, fname, lname, organization, friends, tendencies]
@@ -25,4 +26,5 @@
   (jailed-friends [this] false)
   (free-friends [this] false)
   (is-above [this] false)
-  (is-below [this] false))
+  (is-below [this] false)
+  (memory-length [this] 1)
