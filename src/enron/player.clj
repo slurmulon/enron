@@ -40,9 +40,9 @@
   (is-corrupt? [this] false)
   (is-jailed? [this] false)
   (is-free? [this] false)
-  (is-above [this] false)
-  (is-below [this] false)
-  (memory-length [this] 1)
+  (is-above? [this other] false)
+  (is-below? [this other] false)
+  (memory-length [this] 1) ; TODO: base on settings
 
   (corrupt-friends [this] [])
   (jailed-friends [this] false)
