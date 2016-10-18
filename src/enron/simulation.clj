@@ -1,4 +1,4 @@
-(ns enron.simulate)
+(ns enron.simulation)
 
 (defrecord settings
   [pay-off-corruption ; 20
@@ -9,8 +9,13 @@
    jail-period ; 5 rounds
    network-size ; 5 agents
    prob-capture ; 0.2
-   num-rounds ; 200 rounds]) 
+   num-rounds ; 200 rounds])
 
 (defn run [settings])
 
 (defn generate-players [])
+
+; generate-rounds
+; generate-relationships
+; generate-friends
+; generate-family
