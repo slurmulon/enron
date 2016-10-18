@@ -15,8 +15,8 @@
   (is-corrupt? [this] "Determines if an agent has performed at least one corrupt act")
   (is-jailed? [this] "Determines if agent is currently imprisoned for corruption")
   (is-free? [this] "Specifies if the agent is out of jail")
-  (is-above? [this] "Determines if the player is at a higher rank than another player (i.e. can entrust acts to other player)")
-  (is-below? [this] "Determines if the player is at a lower rank than another player (i.e. can be entrusted to perform acts")
+  (is-above? [this other] "Determines if the player is at a higher rank than another player (i.e. can entrust acts to other player)")
+  (is-below? [this other] "Determines if the player is at a lower rank than another player (i.e. can be entrusted to perform acts")
   (memory-length [this] "Number of rounds a person will remember the actions of a friend/colleague")
 
   (corrupt-friends [this] "Provides a collection of related players that are engaging in corrupt activities")
@@ -41,10 +41,10 @@
   (is-corrupt? [this] false)
   (is-jailed? [this] false)
   (is-free? [this] false)
-  (is-above? [this other] false)
-  (is-below? [this other] false)
+  (is-above? [this other] (contains? (:friends this) other))
+  (is-below? [this other] (contains? (:friends other) this))
   (memory-length [this] 1) ; TODO: base on settings
 
-  (corrupt-friends [this] [])
-  (jailed-friends [this] false)
-  (free-friends [this] false))
+  (corrupt-friends [this] #(.is-corrupt? %) (:friends this))
+  (jailed-friends [this] #(.is-jailed? %) (:friends this))
+  (free-friends [this] #(.is-free? %) (:friends this))

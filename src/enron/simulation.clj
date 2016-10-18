@@ -4,7 +4,7 @@
   [pay-off-corruption ; 20
    pay-off-honest ; 1
    dist-honesty-index ; Random distribution (gaussian) among agents
-   num-agents ; 75 members of P, 75 members of G
+   num-players ; 75 members of P, 75 members of G
    honesty-index ; 0-1
    jail-period ; 5 rounds
    network-size ; 5 agents
@@ -14,8 +14,7 @@
 (defn run [settings])
 
 (defn generate-players [])
-
-; generate-rounds
-; generate-relationships
-; generate-friends
-; generate-family
+(defn generate-rounds [])
+(defn generate-relationships [])
+(defn generate-friends)
+(defn generate-family)
