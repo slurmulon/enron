@@ -45,6 +45,6 @@
   (is-below? [this other] (contains? (:friends other) this))
   (memory-length [this] 1) ; TODO: base on settings
 
-  (corrupt-friends [this] #(.is-corrupt? %) (:friends this))
-  (jailed-friends [this] #(.is-jailed? %) (:friends this))
-  (free-friends [this] #(.is-free? %) (:friends this))
+  (corrupt-friends [this] (map #(.is-corrupt? %) (:friends this)))
+  (jailed-friends [this] (map #(.is-jailed? %) (:friends this)))
+  (free-friends [this] (map #(.is-free? %) (:friends this)))
