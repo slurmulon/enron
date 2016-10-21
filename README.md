@@ -8,11 +8,9 @@ Based on the amazing computational society work of Hokky Situngkir
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Download from http://github.com/slurmulon/enron.
 
 ## Usage
-
-FIXME: explanation
 
     $ java -jar enron-0.1.0-standalone.jar [args]
 
@@ -21,10 +19,6 @@ FIXME: explanation
 FIXME: listing of options this app accepts.
 
 ## Examples
-
-...
-
-### Bugs
 
 ...
 
