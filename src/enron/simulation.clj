@@ -16,13 +16,23 @@
 (defn generate-players [settings]
   (map #(Player. "49c6d00d-a18e-4078-9b47-7959164e3e67" "Bob" "Saget" nil [] nil) [_ (range (:num-players settings))]))
 
-(defn generate-organizations [settings])
+; (defn generate-organizations [settings])
 
-(defn generate-rounds [settings])
-
-(defn generate-friends [settings])
+; TODO: might want to use map->Player
+; @see: https://clojuredocs.org/clojure.core/defrecord#example-542692d2c026201cdc326f8b
+(defn generate-friends [settings]
+  (let [players (shuffle (generate-players settings))]
+    (map
+      (fn [player]
+        (let [friends (take (int (* rand 5)) (filter #(not player %) players))]
+          (merge player {:friends friends})))
+      players)))
 
 (defn generate-family [settings])
 
 (defn generate-relationships [settings])
+
+(defn generate-trusts [settings])
+
+(defn generate-rounds [settings])
 
