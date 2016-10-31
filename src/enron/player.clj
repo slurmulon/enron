@@ -24,7 +24,7 @@
   (free-friends [this] "Provides a collection related players that are currently free"))
 
 ; TODO: type hints
-(defrecord Player [uuid, fname, lname, organization, friends, tendencies, corrupt? jailed?]
+(defrecord Player [uuid, fname, lname, organization, friends, simulation, corrupt? jailed?]
   Human
   (will-corrupt? [this, payoff-honest] (> decision-index payoff-honest)) ; E(x)
   (will-others-likely-agree? [this] (/ (count corrupt-friends) (memory-length)))
@@ -43,7 +43,7 @@
   (is-free? [this] (not (:is-jailed? this)))
   (is-above? [this other] (contains? (:friends this) other))
   (is-below? [this other] (contains? (:friends other) this))
-  (memory-length [this] 1) ; TODO: base on settings
+  (memory-length [this] (:memory-length (:simulation this)))
 
   (corrupt-friends [this] (filter #(.is-corrupt? %) (:friends this)))
   (jailed-friends [this] (filter #(.is-jailed? %) (:friends this)))
