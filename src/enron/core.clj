@@ -5,7 +5,7 @@
 (def cli-options
   [["-r" "--rounds ROUNDS" "Number of rounds"
     :id :num-rounds
-    :default 20
+    :default 200
     :parse-fn #(Integer/parseInt %)
     :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
 
