@@ -16,8 +16,8 @@
 (defn run [settings])
 
 ; TODO: consider Trustor, Gurantee, Corruptor
-(defn generate-players [settings]
-  (map #(->Player "49c6d00d-a18e-4078-9b47-7959164e3e67" "Bob" "Saget" nil [] settings) (range (:num-players settings))))
+(defn generate-players [settings] nil
+  (map (fn [_] (->Player "49c6d00d-a18e-4078-9b47-7959164e3e67" "Bob" "Saget" nil [] settings false false)) (range (:num-players settings))))
 
 ; (defn generate-organizations [settings])
 

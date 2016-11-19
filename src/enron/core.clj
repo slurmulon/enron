@@ -57,4 +57,4 @@
   (println ":trollface: enron" args)
   (let [settings (parse-opts args cli-options)]
     (println "settings" (:options settings))
-    (println ("players" (generate-players (:options settings))))))
+    (println "players" (generate-players (:options settings)))))
