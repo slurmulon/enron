@@ -31,4 +31,4 @@ MIT
 # Roadmap
 
 - [ ] Law enforcement / criminal justice agents
-- [ ] Visualization API
+- [ ] Whiteboard / visualization API

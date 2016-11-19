@@ -2,6 +2,7 @@
   (:require [clojure.tools.cli :refer [parse-opts]])
   (:gen-class))
 
+; TODO: use :assoc-fn on each of these to integrate into the simulation module
 (def cli-options
   [["-r" "--rounds ROUNDS" "Number of rounds"
     :id :num-rounds
@@ -32,7 +33,7 @@
    ["-jp" "--jail PERIOD" "Jail period for convicted corruption"
     :id :jail-period
     :default 5
-    :parse-fn #(Integer/pasreInt %)]
+    :parse-fn #(Integer/parseInt %)]
 
    ["-ns" "--network SIZE" "Number of agents in each agent's network"
     :id :network-size
@@ -52,4 +53,6 @@
    ["-h" "--help"]])
 
 (defn -main [& args]
-  (parse-opts args cli-options))
+  (println ":trollface: enron" args)
+  (let [result (parse-opts args cli-options)]
+    (println "--- result" (:options result))))
