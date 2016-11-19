@@ -1,4 +1,5 @@
-(ns enron.simulation)
+(ns enron.simulation
+  (:require [enron.player :refer :all))
 
 (defrecord settings
   [pay-off-corruption ; 20
