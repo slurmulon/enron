@@ -38,11 +38,11 @@
 ; @see: https://clojuredocs.org/clojure.core/defrecord#example-542692d2c026201cdc326f8b
 (defn generate-friends [settings]
   (let [players (shuffle (generate-players settings))]
-  (map (fn [player]
-         (let [other-players (filter #(not player %) players)
-               network-size (int (* rand (:network-size settings)))]
+    (map (fn [player]
+           (let [other-players (filter #(not player %) players)
+                 network-size (int (* rand (:network-size settings)))]
            (merge player {:friends (take network-size other-players)})))
-       players)))
+        players)))
 
 (defn generate-relationships [settings]) ; Family, Friend, Workers
 
