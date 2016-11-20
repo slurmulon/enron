@@ -1,6 +1,6 @@
 (ns enron.core
   (:require [clojure.tools.cli :refer [parse-opts]]
-            [enron.simulation :refer [run generate-players]])
+            [enron.simulation :refer [run generate-players generate-friends]])
   (:gen-class))
 
 ; TODO: use :assoc-fn on each of these to integrate into the simulation module
@@ -59,7 +59,7 @@
    ["-h" "--help"]])
 
 (defn -main [& args]
-  (println ":trollface: enron" args)
   (let [settings (parse-opts args cli-options)]
     (println "settings" (:options settings))
-    (println "players" (generate-players (:options settings)))))
+    (println "players" (generate-players (:options settings)))
+    (println "friends" (generate-friends (:options settings)))))
