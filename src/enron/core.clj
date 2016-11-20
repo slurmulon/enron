@@ -59,6 +59,5 @@
 
 (defn -main [& args]
   (let [settings (parse-opts args cli-options)]
-    (println "settings" (:options settings))
-    (println "players" (generate-players (:options settings)))
-    (println "friends" (generate-friends (:options settings)))))
+    ; (clojure.pprint/pprint (generate-players (:options settings)))))
+    (clojure.pprint/pprint (generate-friends (:options settings)))))

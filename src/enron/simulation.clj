@@ -42,7 +42,7 @@
     (map (fn [player]
            (let [other-players (filter #(not (= player %)) players)
                  network-size (rand-int (:network-size settings))]
-           (merge player {:friends (take network-size other-players)})))
+             (merge player {:friends (take network-size other-players)})))
          players)))
 
 (defn generate-relationships [settings]) ; Family, Friend, Workers
@@ -50,3 +50,6 @@
 (defn generate-trusts [settings]) ; from-players, to-players, greed-payoff, honest-payoff
 
 (defn generate-rounds [settings])
+
+(defn generate-society [settings]) ; calls `generate-relationships`, `generate-trusts`, and `generate-rounds`
+
