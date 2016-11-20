@@ -26,6 +26,11 @@
     :default 75
     :parse-fn #(Integer/parseInt %)]
 
+   ["-o" "--organizations ORGANIZATIONS" "Number of organizations"
+    :id :num-organizations
+    :default 1
+    :parse-fn #(Integer/parseInt %)]
+
    ["-i" "--index HONESTY" "Honesty index (0 - 1)"
     :id :honesty-index
     :default 1

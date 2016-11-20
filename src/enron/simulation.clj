@@ -22,25 +22,27 @@
 
 (defn run [settings])
 
+(defn generate-organizations [settings]
+  (map (fn [_]
+         (->Organization (random/uuid) (first (fake-company/names)) (fake-address/street-address) (random/float)))
+       (range (:num-organizations settings))))
+
 ; TODO: consider Trustor, Gurantee, Corruptor
 (defn generate-players [settings]
-  (map (fn [_] (->Player (random/uuid) (fake-person/first-name) (fake-person/last-name) nil [] settings false false))
+  (map (fn [_]
+         (let [organization (first (shuffle (generate-organizations settings)))]
+           (->Player (random/uuid) (fake-person/first-name) (fake-person/last-name) organization [] settings false false)))
        (range (:num-players settings))))
 
 ; TODO: might want to use map->Player
 ; @see: https://clojuredocs.org/clojure.core/defrecord#example-542692d2c026201cdc326f8b
-; TODO: integrate network-size
 (defn generate-friends [settings]
   (let [players (shuffle (generate-players settings))]
   (map (fn [player]
-         (let [other-players (filter #(not player %) players)]
-           (merge player {:friends (take (int (* rand (:network-size settings))) other-players)})))
+         (let [other-players (filter #(not player %) players)
+               network-size (int (* rand (:network-size settings)))]
+           (merge player {:friends (take network-size other-players)})))
        players)))
-
-(defn generate-organizations [settings]
-  (map (fn [company]
-         (->Organization (random/uuid) (first (fake-company/names)) (fake-address/street-address) (random/float)))
-       (range (:num-organizations settings))))
 
 (defn generate-relationships [settings]) ; Family, Friend, Workers
 
