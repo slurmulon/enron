@@ -36,6 +36,7 @@
 
 ; TODO: might want to use map->Player
 ; @see: https://clojuredocs.org/clojure.core/defrecord#example-542692d2c026201cdc326f8b
+; FIXME: make the relationship reflexive (i.e. if A is a friend of B, B is a friend of A)
 (defn generate-friends [settings]
   (let [players (shuffle (generate-players settings))]
     (map (fn [player]

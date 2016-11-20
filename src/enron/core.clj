@@ -3,7 +3,6 @@
             [enron.simulation :refer [run generate-players generate-friends]])
   (:gen-class))
 
-; TODO: use :assoc-fn on each of these to integrate into the simulation module
 (def cli-options
   [["-r" "--rounds ROUNDS" "Number of rounds"
     :id :num-rounds
