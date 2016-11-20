@@ -1,5 +1,11 @@
 (ns enron.simulation
-  (:require [enron.player :refer (->Player)]))
+  (:use (faker name address))
+  (:require [enron.player :refer (->Player)]
+            [enron.organization :refer (->Organization)]
+            [clojure.data.generators :as random]
+            [faker.name    :as fake-person]
+            [faker.company :as fake-company]
+            [faker.address :as fake-address]))
 
 (defrecord settings
   [pay-off-corruption ; 20
@@ -11,23 +17,30 @@
    network-size ; 5 agents
    prob-capture ; 0.2
    memory-length ; 7 (TODO: verify this default value)
+   num-organizations ; 1 company
    num-rounds]) ; 200 rounds
 
 (defn run [settings])
 
 ; TODO: consider Trustor, Gurantee, Corruptor
-(defn generate-players [settings] nil
-  (map (fn [_] (->Player "49c6d00d-a18e-4078-9b47-7959164e3e67" "Bob" "Saget" nil [] settings false false)) (range (:num-players settings))))
-
-; (defn generate-organizations [settings])
+(defn generate-players [settings]
+  (map (fn [_] (->Player (random/uuid) (fake-person/first-name) (fake-person/last-name) nil [] settings false false))
+       (range (:num-players settings))))
 
 ; TODO: might want to use map->Player
 ; @see: https://clojuredocs.org/clojure.core/defrecord#example-542692d2c026201cdc326f8b
+; TODO: integrate network-size
 (defn generate-friends [settings]
   (let [players (shuffle (generate-players settings))]
   (map (fn [player]
-         (merge player {:friends (take (int (* rand 5)) (filter #(not player %) players))}))
+         (let [other-players (filter #(not player %) players)]
+           (merge player {:friends (take (int (* rand (:network-size settings))) other-players)})))
        players)))
+
+(defn generate-organizations [settings]
+  (map (fn [company]
+         (->Organization (random/uuid) (first (fake-company/names)) (fake-address/street-address) (random/float)))
+       (range (:num-organizations settings))))
 
 (defn generate-relationships [settings]) ; Family, Friend, Workers
 

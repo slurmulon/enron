@@ -1,3 +1,3 @@
 (ns enron.organization)
 
-(deftype Organization [uuid, title, address, funds])
+(defrecord Organization [uuid, title, address, funds])
